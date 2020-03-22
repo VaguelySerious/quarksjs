@@ -1,0 +1,10 @@
+{
+  "name": "quarksjs",
+  "version": "1.0.0",
+  "description": "Quark Animation in JS",
+  "main": "index.js",
+  "repository": "git@github.com:VaguelySerious/quarksjs.git",
+  "author": "VaguelySerious <mittgfu@gmail.com>",
+  "license": "MIT",
+  "devDependencies": {}
+}
