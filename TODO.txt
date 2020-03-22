@@ -1,0 +1,4 @@
++ Ellipse instead of circle trajectories
++ More options for coloring
++ Weight random distribution towards center
++ Add internal boundaries to not cut off towards edges

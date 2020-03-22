@@ -22,11 +22,11 @@ class QuarkAnimation {
     // this.offset = Object.assign({ x: 50, y: 50 }, options.offset || {});
     // TODO Optionally accept function that takes intensity and returns color
     this.color = options.color || "255,255,255";
+    const count = options.count || 50;
 
     const size = Math.max(this.bounds.x, this.bounds.y);
     this.size = size;
     this.maxLength = size / 8;
-    const count = 200;
     const points = [];
     this.points = points;
 
