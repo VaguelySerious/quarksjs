@@ -4,13 +4,23 @@
     <meta charset="UTF-8" />
     <title>Quarks Example</title>
   </head>
-  <body>
-    <style media="screen"></style>
-    <h1>Quarks Example</h1>
-    <button id="start" type="button">Start</button>
-    <button id="stop" type="button">Stop</button>
-    <canvas id="canvas" width="1000" height="1000"></canvas>
+  <body style="background-color: black; color: white">
+    <div
+      class="container"
+      style="display: flex; width: 100%; height: 90vh; justify-content: center; align-items: center;"
+    >
+      <main class="main">
+        <div class="head" style="padding-bottom: 1rem;">
+          <h1>Quarks Example</h1>
+          <button id="start" type="button">Start</button>
+          <button id="stop" type="button">Stop</button>
+          <button id="tick" type="button">Tick</button>
+          <button id="reload" type="button">Reload</button>
+        </div>
 
-    <script src="index.js"></script>
+        <canvas id="canvas" width="300" height="300"></canvas>
+        <script src="index.js"></script>
+      </main>
+    </div>
   </body>
 </html>
