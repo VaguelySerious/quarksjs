@@ -18,11 +18,14 @@ class QuarkAnimation {
     // TODO ID or Element
     this.canvas = document.getElementById(options.id);
     this.ctx = this.canvas.getContext("2d");
-    this.bounds = Object.assign({ w: 100, h: 100 }, options.size || {});
-    const size = Math.max(this.bounds.w, this.bounds.h);
+    this.bounds = Object.assign({ x: 100, y: 100 }, options.bounds || {});
+    // this.offset = Object.assign({ x: 50, y: 50 }, options.offset || {});
+    // TODO Optionally accept function that takes intensity and returns color
+    this.color = options.color || "255,255,255";
+
+    const size = Math.max(this.bounds.x, this.bounds.y);
     this.size = size;
     this.maxLength = size / 8;
-
     const count = 200;
     const points = [];
     this.points = points;
@@ -30,7 +33,7 @@ class QuarkAnimation {
     for (let i = 0; i < count; i++) {
       const centerX = random(0, size);
       const centerY = random(0, size);
-      const radiusX = random(0, Math.floor(size / 10));
+      const radiusX = random(2, Math.floor(size / 10));
       const radiusY = radiusX;
       // const radiusY = random(0, Math.floor(size / 10));
       const speed = random(size / 100, size / 50);
@@ -69,11 +72,10 @@ class QuarkAnimation {
       this.points.forEach(({ x: x2, y: y2 }) => {
         const distance = Math.sqrt(Math.pow(x - x2, 2) + Math.pow(y - y2, 2));
         const range = this.maxLength - distance;
-        const intensity = range * (100 / this.maxLength);
+        const intensity = Math.sqrt(range * (100 / this.maxLength)) * 3;
         if (intensity > 0 && intensity < 100) {
           ctx.beginPath();
-          ctx.strokeStyle = `rgba(255,255,255,${intensity / 100})`;
-          // ctx.strokeStyle = "#FF0000";
+          ctx.strokeStyle = `rgba(${this.color},${intensity / 100})`;
           ctx.moveTo(x, y);
           ctx.lineTo(x2, y2);
           ctx.stroke();
@@ -88,7 +90,6 @@ class QuarkAnimation {
   }
 
   start() {
-    console.log(this);
     this.running = true;
     window.requestAnimationFrame(this.draw.bind(this));
   }
@@ -99,24 +100,3 @@ class QuarkAnimation {
 }
 
 window.QuarkAnimation = QuarkAnimation;
-var quark = new QuarkAnimation({
-  id: "canvas",
-  size: { w: 300, h: 300 }
-});
-
-document
-  .getElementById("start")
-  .addEventListener("click", quark.start.bind(quark));
-document
-  .getElementById("stop")
-  .addEventListener("click", quark.stop.bind(quark));
-document.getElementById("tick").addEventListener("click", () => {
-  quark.tick();
-  quark.draw();
-});
-document.getElementById("reload").addEventListener("click", () => {
-  window.location.reload();
-});
-
-quark.tick();
-quark.draw();

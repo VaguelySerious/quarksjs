@@ -20,6 +20,28 @@
 
         <canvas id="canvas" width="300" height="300"></canvas>
         <script src="index.js"></script>
+        <script>
+          var quark = new QuarkAnimation({
+            id: "canvas",
+            bounds: { x: 300, y: 300 }
+          });
+
+          document
+            .getElementById("start")
+            .addEventListener("click", quark.start.bind(quark));
+          document
+            .getElementById("stop")
+            .addEventListener("click", quark.stop.bind(quark));
+          document.getElementById("tick").addEventListener("click", () => {
+            quark.tick();
+            quark.draw();
+          });
+          document.getElementById("reload").addEventListener("click", () => {
+            window.location.reload();
+          });
+
+          quark.start();
+        </script>
       </main>
     </div>
   </body>
