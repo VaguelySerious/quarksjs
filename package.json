@@ -6,5 +6,10 @@
   "repository": "git@github.com:VaguelySerious/quarksjs.git",
   "author": "VaguelySerious <mittgfu@gmail.com>",
   "license": "MIT",
-  "devDependencies": {}
+  "devDependencies": {
+    "uglify-es": "^3.3.9"
+  },
+  "scripts": {
+    "build": "./node_modules/uglify-es/bin/uglifyjs -c -m --keep-classnames -o ./lib/quarks.min.js -- lib/quarks.js"
+  }
 }
